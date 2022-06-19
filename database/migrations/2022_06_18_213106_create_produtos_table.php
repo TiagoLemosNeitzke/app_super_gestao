@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('peso')->nullable();
             $table->float('preco_venda',8, 2)->default(0.01); //O NÚMERO 8 INDICA A QUANTIDADE DE DIGITOS, O 2 INDICA QUANTOS NUMEROS DEPOIS DA VÍRGULA SERÃO USADOS
             $table->integer('estoque_minimo')->default(1);
-            $table->integer('estoque-maximo')->default(1);
+            $table->integer('estoque_maximo')->default(1);
             $table->timestamps();
         });
     }
