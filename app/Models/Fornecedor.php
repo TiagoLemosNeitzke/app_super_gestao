@@ -137,4 +137,16 @@ MÉTODO PLUCK
                                         "Helena" => "helena@contato.com.br",
                                         ],
                                         }
+*********************************************SOFTDELETE****************************************************************************
+=> PARA IMPLEMENTAR O SOFTDELETE TENHO QUE DAR UM use Illuminate\Database\Eloquent\SoftDeletes; NO MODEL ONDE QUERO USAR, CRIAR UMA COLUNA SOFTDELETE NO BANCO.
+
+=> ISSO FARA COM QUE AO DAR UM delete() NO TINKER A COLUNA SOFT DELETE SERÁ PREENCHIDA NO BANCO, MAS O REGISTRO SERÁ MANTIDO NO BANCO.
+
+=> PARA DELETAR DE FORMA DEFINITIVA TENHO QUE DAR UM forceDelete(), NO TINKER
+
+=> PARA RESTAURAR REGISTROS REMOVIDOS COM SOFTDELETE, restore();
+
+=> PARA SELECIONAR REGISTROS ATIVOS E REMOVIDOS COM SOFDELETE, withTrashed();
+
+=> PARA SELECIONAR SOMENTE OS REGISTROS REMOVIDOS COM SOFDELETE, onlyTrashed();
 */
