@@ -40,5 +40,5 @@ class FornecedorSeeder extends Seeder
  *
  * $this->call(FornecedorSeeder::class); PRECISO CHAMAR O SEEDER QUE CRIEI AQUI LÁ NO ARQUIVO DatabaseSeeder.php
  * 
- * PRECISA RODAR O COMANDO NO TERMINAL php artisan db:seed
+ * PRECISA RODAR O COMANDO NO TERMINAL php artisan db:seed ou php artisan db:seed --class SiteContatoSeeder PARA EXECUTAR UMA CLASS EXPECÍFICA
 */
