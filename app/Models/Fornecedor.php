@@ -4,15 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fornecedor extends Model
 {
-    use HasFactory;
-    protected $table = 'fornecedores'; //USAR SEMPRE QUE O NOME DA TABELA NÃO FOR SÓ ACRESCIDA DE S NO FINAL, POIS O ELOQUENT NÃO CONSIGUIRÁ ENCONTRA-LA SEM QUE EU SET ISSO 
+        use HasFactory;
+        use SoftDeletes;
+        protected $table = 'fornecedores'; //USAR SEMPRE QUE O NOME DA TABELA NÃO FOR SÓ ACRESCIDA DE S NO FINAL, POIS O ELOQUENT NÃO CONSIGUIRÁ ENCONTRA-LA SEM QUE EU SET ISSO 
 
-    
-    protected $fillable = ['nome', 'site', 'uf', 'email']; // PRECISO DESTE ATRIBUTO PARA USAR O MÉTODO ESTÁTICO CREATE NO TINKER | sintaxe no terminal \App\Models\Fornecedor::create(['nome'=>'Fornecedor2','site'=>'fornecedor2.com.br','uf'=>'MS','email'=>'fornecedor2@teste.com.br']);
+
+        protected $fillable = ['nome', 'site', 'uf', 'email']; // PRECISO DESTE ATRIBUTO PARA USAR O MÉTODO ESTÁTICO CREATE NO TINKER | sintaxe no terminal \App\Models\Fornecedor::create(['nome'=>'Fornecedor2','site'=>'fornecedor2.com.br','uf'=>'MS','email'=>'fornecedor2@teste.com.br']); | PARA ATUALIZAR USAR O MÉTODO fill([passar a coluna e o novo valor por array associativo, como fiz no create]) depois usar o método save() para persistir no banco os dados
+
+
 }
+
+
+
 /*                                                      NOTAS DE USO DO TINKER
  Sintaxe no terminal para usar o TINKER
     abrir o tinker => php artisan tinker
@@ -25,9 +32,13 @@ class Fornecedor extends Model
     Salvando dados no banco => $fornecedor->save();
 
 
-PARA RECUPERAR OS DADOS DO BANCO | RETORNA UMA COLLECTION
+PARA RECUPERAR TODOS OS DADOS DO BANCO | RETORNA UMA COLLECTION
         use \App\Models\Fornecedor;
         $f = Fornecedores::all();
+
+PARA RECUPERAR TODOS OS DADOS DO BANCO | RETORNA UMA COLLECTION
+        use \App\Models\Fornecedor;
+        $f = Fornecedores::orderBy('nome','asc'); | PORDE SER PASSADP 'asc' ou 'desc'
 
 PARA OBTER O RETORNO COMO ARRAY 
     use \App\Models\Fornecedor;
@@ -84,4 +95,46 @@ PESQUISANDO POR TIME | WHERETIME
 PESQUISANDO POR COLUNAS | WHERECOLUMN
         use App\Models\Sitecontato;
         $x = Sitecontato::whereColumn('created_at','=', 'updated_at')->get(); | POSSO UTILIZAR TODOS OS OPERADORES DE COMPARAÇÃO | NÃO COMPARA NULL
+
+PESQUISANDO POR SUBGRUPOS DE CONSULTAS POR ORGEM DE PRECEDÊNCIA
+        use App\Models\Sitecontato;
+        $x = Sitecontato::where(function($query){$query->where('nome','Jorge')->orWhere('nome','Ana');})->where(function($query){$query->whereIn('motivo_contato',[1,2])->orWhereBetween('id',[4,6]);});
+
+
+
+        **************************************COLLECTION NOTAS *****************************************************************************
+SINTAXE: CONSULTAR A DOCUMENTAÇÃO LARAVEL PARA VER TODOS OS MÉTODOS DISPONÍVEIS
+        use App\Models\Sitecontato;
+        Sitecontato::all()->first();  | last(); reverse() RETORNA O PRIMEIRO REGISTRO DE UMA COLLECTION
+MÉTODO PLUCK
+        use App\Models\Sitecontato;
+        Sitecontato::all()->pluck('email'); | RETRONARIA TODOS OS EMAILS CADASTRADOS NO BANCO
+                RETORNO DA LINHA ACIMA:
+                        Illuminate\Support\Collection {#4482
+                                all: [
+                                "jorge@teste.com",
+                                "maria@teste.com.br",
+                                "joao@contato.com.br",
+                                "rosa@contato.com.br",
+                                "fernando@contato.com.br",
+                                "andre@contato.com.br",
+                                "ana@contato.com.br",
+                                "helena@contato.com.br",
+                                ],
+                                }
+
+        POSSO USAR ASSIM TAMBÉM O PLUCK Sitecontato::all()->pluck('email','nome'); | RETORNA UM ARRAY DE ÍNDICE ASSOCIATIVO COM A CHAVE SENDO O NOME
+                                RETORNO DA LINHA ACIMA:
+                                        Illuminate\Support\Collection {#4491
+                                        all: [
+                                        "Jorge" => "jorge@teste.com",
+                                        "Maria" => "maria@teste.com.br",
+                                        "João" => "joao@contato.com.br",
+                                        "Rosa" => "rosa@contato.com.br",
+                                        "Fernando" => "fernando@contato.com.br",
+                                        "André" => "andre@contato.com.br",
+                                        "Ana" => "ana@contato.com.br",
+                                        "Helena" => "helena@contato.com.br",
+                                        ],
+                                        }
 */
