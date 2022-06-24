@@ -8,7 +8,7 @@ use App\Models\MotivoContato;
 
 class ContatoController extends Controller
 {
-    public function contato(Request $request) {
+    public function contato() {
         // O CÓDIGO ABAIXO É PARA TESTE NA VIEW
         $motivo_contato = MotivoContato::all();
 
