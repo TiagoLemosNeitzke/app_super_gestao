@@ -8,7 +8,8 @@ use App\Models\MotivoContato;
 
 class ContatoController extends Controller
 {
-    public function contato() {
+    public function contato()
+    {
         // O CÓDIGO ABAIXO É PARA TESTE NA VIEW
         $motivo_contato = MotivoContato::all();
 
@@ -21,7 +22,7 @@ class ContatoController extends Controller
 
         // AS DUAS MANEIRAS DE GRAVAR OS DADOS NO BANCO QUE ESTÃO ABAIXO PRECISAM DO MÉTODO SAVE()
 
-      //  $contato->fill($request->all()); | ESTÁ É OUTRA FORMA DE PERSISTIR OS DADOS NO BANCO
+        //  $contato->fill($request->all()); | ESTÁ É OUTRA FORMA DE PERSISTIR OS DADOS NO BANCO
 
         /* O CÓDIGO ABAIXO É UM EXEMPLO DE COMO POSSO POPULAR O BANCO COM OS DADOS VIDOS DO FRONT
         $contato->nome = $request->input('nome');
@@ -36,17 +37,17 @@ class ContatoController extends Controller
         return view('site.contato', ['titulo' => 'Contato (teste)', 'motivo_contato' => $motivo_contato]);
     }
 
-    public function salvar(Request $request) {
+    public function salvar(Request $request)
+    {
         $request->validate([
             'nome' => 'required',
             'telefone' => 'required',
             'email' => 'email:rfc,dns',
-            'motivo_contato' => 'required',
+            'motivo_contato_id' => 'required',
             'mensagem' => 'required | max:200'
         ]);
-        
-        Sitecontato::create($request->all());
-        
-        
+
+        Sitecontato::create($request->all());    
+        //return view();
     }
 }
