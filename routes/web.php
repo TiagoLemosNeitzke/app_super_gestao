@@ -23,12 +23,13 @@ use Illuminate\Support\Facades\Route;
     /-> delete
     /-> options
     */
-// O MIDDLEWARE DEVE SER ASSOCIADO AO ROTA, PARA PODER SER UTILIZADO
+// O MIDDLEWARE DEVE SER ASSOCIADO O ROTA, PARA PODER SER UTILIZADO
     Route::middleware(LogAcessoMiddleware::class)->get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index'); //O NOME DA ROTA SERVE PRA USAR DENTRO DO LARAVEL, NÃO SERVE PRA CHAMAR A ROTA NO NAVEGADOR
 
+    /* O MIDDLEWARE DA ROTA /SOBRENOS ESTÁ SENDO CHAMADO NO CONTROLADOR DELA */
     Route::get('/sobrenos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 
-    Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
+    Route::middleware(LogAcessoMiddleware::class)->get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
     Route::post('/contato', [\App\Http\Controllers\ContatoController::class, 'salvar'])->name('site.contato');
 
     Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');

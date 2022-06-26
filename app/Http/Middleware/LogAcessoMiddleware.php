@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\LogAcesso;
 
 class LogAcessoMiddleware
 {
@@ -16,8 +17,12 @@ class LogAcessoMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        //return $next($request);
+        //dd($request);
+        $ip = $request->server->get('REMOTE_ADDR');
+        $rota = $request->getRequestUri();
+        LogAcesso::create(['log' => "O $ip requisitou acesso a rota $rota"]);
         //FORMANDO UMA RESPOSTA PARA A REQUISIÇÃO, É APENAS UM EXEMPLO
-        return response('<div style="color: red;">Ouve um erro ao tentar acessar esta página, tente novamente.</div>');
+        //return response('<div style="color: red;">Ouve um erro ao tentar acessar esta página, tente novamente.</div>');
+        return $next($request);
     }
 }
