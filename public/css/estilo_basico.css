@@ -187,3 +187,11 @@ button:hover {
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
 }
+
+.erro_input {
+    width: fit-content;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 5px;
+    color: red;
+}

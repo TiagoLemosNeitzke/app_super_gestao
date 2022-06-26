@@ -39,15 +39,16 @@ class ContatoController extends Controller
 
     public function salvar(Request $request)
     {
+        //validação dos dados recebidos do form
         $request->validate([
-            'nome' => 'required',
+            'nome' => 'required', //unique:sitecontatos -> verifica no banco sitecontatos se os dados são únicos
             'telefone' => 'required',
             'email' => 'email:rfc,dns',
             'motivo_contato_id' => 'required',
-            'mensagem' => 'required | max:200'
+            'mensagem' => 'required |max:200 |unique:sitecontatos'
         ]);
 
-        Sitecontato::create($request->all());
-        return redirect()->route('site.index');
+        Sitecontato::create($request->all()); // salva os dados no banco
+        return redirect()->route('site.index'); // retorna a página inicial
     }
 }
