@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\LogAcessoMiddleware;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,8 @@ use Illuminate\Support\Facades\Route;
     /-> delete
     /-> options
     */
-
-    Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index'); //O NOME DA ROTA SERVE PRA USAR DENTRO DO LARAVEL, NÃO SERVE PRA CHAMAR A ROTA NO NAVEGADOR
+// O MIDDLEWARE DEVE SER ASSOCIADO AO ROTA, PARA PODER SER UTILIZADO
+    Route::middleware(LogAcessoMiddleware::class)->get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index'); //O NOME DA ROTA SERVE PRA USAR DENTRO DO LARAVEL, NÃO SERVE PRA CHAMAR A ROTA NO NAVEGADOR
 
     Route::get('/sobrenos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 

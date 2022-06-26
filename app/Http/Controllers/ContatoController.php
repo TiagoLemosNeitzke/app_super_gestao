@@ -49,10 +49,10 @@ class ContatoController extends Controller
                 'mensagem' => 'required |max:200 |unique:sitecontatos'
             ],
             [
-                'email.email' => 'O email informado não é válido',
-                'mensagem.max' => 'A mensagem não pode ter mais de 200 caracteres',
+                'email.email' => 'O email informado não é válido.',
+                'mensagem.max' => 'A mensagem não pode ter mais de 200 caracteres.',
                 'mensagem.unique' => 'Esta mensagem já foi enviada. Retornaremos o seu contato.',
-                'required' => 'O campo :attribute é obrigatório e precisa ser preenchido'
+                'required' => 'O campo :attribute é obrigatório e precisa ser preenchido.'
             ]
         );
 
