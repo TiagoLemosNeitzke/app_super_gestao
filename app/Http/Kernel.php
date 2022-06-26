@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LogAcessoMiddleware::class //Adiciona o middleware para todas as rotas, comentar aqui se quiser adicionar pelo web.php ou no controller
         ],
 
         'api' => [

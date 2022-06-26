@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Middleware\LogAcessoMiddleware;
+//use \Http\Middleware\LogAcessoMiddleware; tenho que descomentar aqui se quiser usar o middleware por aqui, está implementado em Kernel.php
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -23,13 +23,13 @@ use Illuminate\Support\Facades\Route;
     /-> delete
     /-> options
     */
-// O MIDDLEWARE DEVE SER ASSOCIADO O ROTA, PARA PODER SER UTILIZADO
-    Route::middleware(LogAcessoMiddleware::class)->get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index'); //O NOME DA ROTA SERVE PRA USAR DENTRO DO LARAVEL, NÃO SERVE PRA CHAMAR A ROTA NO NAVEGADOR
+// O MIDDLEWARE DEVE SER ASSOCIADO O ROTA, PARA PODER SER UTILIZADO | O CÓDIGO DO MIDDLEWARE ESTÁ COMENTADO PORQUE IMPLEMENTEI ELE DE FORMA GLOBAL EM Kernel.php
+    Route::/* middleware(LogAcessoMiddleware::class)-> */get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index'); //O NOME DA ROTA SERVE PRA USAR DENTRO DO LARAVEL, NÃO SERVE PRA CHAMAR A ROTA NO NAVEGADOR
 
     /* O MIDDLEWARE DA ROTA /SOBRENOS ESTÁ SENDO CHAMADO NO CONTROLADOR DELA */
     Route::get('/sobrenos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 
-    Route::middleware(LogAcessoMiddleware::class)->get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
+    Route::/* middleware(LogAcessoMiddleware::class)-> */get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
     Route::post('/contato', [\App\Http\Controllers\ContatoController::class, 'salvar'])->name('site.contato');
 
     Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');
