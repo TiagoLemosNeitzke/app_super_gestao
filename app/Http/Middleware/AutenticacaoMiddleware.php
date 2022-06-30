@@ -16,9 +16,11 @@ class AutenticacaoMiddleware
      */
     public function handle(Request $request, Closure $next, $metodo_autenticacao_padrao, $perfil)
     {
-        echo $metodo_autenticacao_padrao. ', '. $perfil . '<br>';
-        return Response('Acesso negado! Rota exige autenticação');
-
-        //POSSO REALIZAR AUTENTICAÇÕES AQUI DENTRO
+        session_start();
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+            return $next($request);
+        }else{
+            return redirect()->route('site.login', ['erro' => 2]); // mensagem de erro está ema LoginController.php
+        };
     }
 }
