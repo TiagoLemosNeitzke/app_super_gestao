@@ -38,13 +38,17 @@ use Illuminate\Support\Facades\Route;
     //PARA PASSAR PARÂMETROS VIA MIDDLEWARE, BASTA SEPARAR ELES POR ','
     Route::prefix('/app')->middleware('autenticacao:padrao, visitante')->group(function(){
         
-        Route::get('/clientes', [\App\Http\Controllers\ClientesController::class, 'clientes'])->name('app.clientes');
+        Route::get('/cliente', [\App\Http\Controllers\ClienteController::class, 'index'])->name('app.clientes');
+
+        Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('app.home');
+
+        Route::get('/sair', [\App\Http\Controllers\LoginController::class, 'sair'])->name('app.sair');
 
         Route::get('/fornecedores', [\App\Http\Controllers\FornecedoresController::class, 'fornecedores'])->name('app.fornecedores');
 
         Route::get('/fornecedor', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
     
-        Route::get('/produtos', [\App\Http\Controllers\ProdutosController::class, 'produtos'])->name('app.produtos');
+        Route::get('/produto', [\App\Http\Controllers\ProdutoController::class, 'index'])->name('app.produtos');
     });
 
     // redirecionameto de rotas com redirect().
