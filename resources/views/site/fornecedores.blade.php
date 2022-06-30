@@ -1,10 +1,17 @@
-<h3>Fornecedores (view)</h3>
-<ul>
-    <li><a href="{{route('site.index')}}">Principal</a></li>
-    <li><a href="{{route('site.sobrenos')}}">Sobre Nós</a></li>
-    <li><a href="{{route('site.contato')}}">Contato</a></li>
-    <li><a href="{{route('site.login')}}">Login</a></li>
-    <li><a href="{{route('app.clientes')}}">Clientes</a></li>
-    <li><a href="{{route('app.fornecedores')}}">Fornecedores</a></li>
-    <li><a href="{{route('app.produtos')}}">Produtos</a></li> 
-</ul>
+@extends('site.layouts.basico_autenticado')
+
+@section('titulo')
+@section('conteudo')
+
+    <div class="conteudo-pagina">
+        <div class="titulo-pagina">
+            <h1>Fornecedores</h1>
+        </div>
+
+        <div class="informacao-pagina">
+            
+        </div>
+    </div>
+
+    @include('site.layouts._partials.rodape')
+@endsection
