@@ -1,15 +1,15 @@
 @extends('site.layouts.basico_autenticado')
 
-@section('titulo', 'Produtos')
+@section('titulo', 'Home')
 @section('conteudo')
 
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
-            <h1>Produtos</h1>
+            <h1>Home</h1>
         </div>
 
         <div class="informacao-pagina">
-            
+            <h3>Seja bem vindo ao App Super Gestão!</h3>
         </div>
     </div>
 

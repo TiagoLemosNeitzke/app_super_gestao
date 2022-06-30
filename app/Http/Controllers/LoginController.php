@@ -49,7 +49,7 @@ class LoginController extends Controller
             $_SESSION['password'] = $consulta_user_banco->password;
 
             //dd($_SESSION);
-            return redirect()->route('app.clientes');
+            return redirect()->route('app.home');
         }else{
             return redirect()->route('site.login', ['erro' => 1]);
         };
@@ -58,5 +58,10 @@ class LoginController extends Controller
         echo '</pre>'; */
         //echo $email . '<br>'. $password;
         //print_r($request->all());
+    }
+
+    public function sair() {
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
