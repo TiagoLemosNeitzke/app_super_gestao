@@ -53,6 +53,7 @@ PARA RETORNAR APENAS UM FORNECEDOR DO BANCO
 OPERADORES DE COMPARAÇÃO | WHERE
         use App\Models\Sitecontato;
         $x = Sitecontato::where('id', '>', '1')->get(); | $x = Sitecontato::where('nome_coluna', 'operador_comparacao', 'valor')-> o get() PARA RETORNAR UMA COLECTION; OPERADORES POSSIVEIS DE USO SÃO: > >= < <+  <>(DIFERENTE) ==(PESQUISA POR IGUALDADE É SÓ OMITIR O OPERADOR) like(COM BASE EM UMA PARTE DE UMA STRING FAZ PESQUISA EM UMA DETERMINADA COLUNA)
+        
 EXEMPLO DE USO DO OPERADOR LIKE
          use App\Models\Sitecontato;
         $x = Sitecontato::where('mensagem', 'like', '%ste%');->get() | VAI PESQUISAR NA COLUNA MENSAGEM PELA STRING 'teste' | O % É USADO PARA INDICAR QUE PODE TER QUALQUER COISA ANTES OU DEPOIS DA STRING

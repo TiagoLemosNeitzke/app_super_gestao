@@ -46,7 +46,10 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/fornecedores', [\App\Http\Controllers\FornecedoresController::class, 'fornecedores'])->name('app.fornecedores');
 
-        Route::get('/fornecedor', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
+        Route::get('/consultar', [\App\Http\Controllers\FornecedoresController::class, 'consultarIndex'])->name('site.consultar');
+        Route::post('/consultar', [\App\Http\Controllers\FornecedoresController::class, 'consultar'])->name('site.consultar');
+
+        Route::get('/fornecedor/{fornecedor?}', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
     
         Route::get('/produto', [\App\Http\Controllers\ProdutoController::class, 'index'])->name('app.produtos');
     });
