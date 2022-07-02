@@ -20,7 +20,7 @@
                     <button type="submit" class="borda-preta">Entrar</button>
                 </form>
                 <span style="color: red;"> {{isset($erro) && $erro != '' ? $erro : '' }}</span>
-                
+            
             </div>
             
         </div>

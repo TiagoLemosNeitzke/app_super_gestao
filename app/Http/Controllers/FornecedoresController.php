@@ -6,6 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Fornecedor;
+use Illuminate\Support\Str;
 
 class FornecedoresController extends Controller
 {
@@ -43,14 +44,66 @@ class FornecedoresController extends Controller
 
     public function consultar()
     {
-       
+
         $fornecedores = new Fornecedor;
         $nome = $_POST['nome'];
+        $site = $_POST['site'];
+        $uf = $_POST['uf'];
+        $email = $_POST['email'];
+        $fornecedores = $fornecedores
+            ->orwhere('nome', $nome)
+            ->orWhere('site', $site)
+            ->orWhere('uf', $uf)
+            ->orWhere('email', $email)
+            ->get();
+
+        return view('site.consultar', ['fornecedor' => $fornecedores->toArray()]);
+    }
+
+    public function cadastrarIndex()
+    {
+        return view('site.cadastrar');
+    }
+
+    public function cadastrar(Request $request)
+    {
+        $request->validate(
+            [
+                'nome' => 'required',
+                'site' => 'required',
+                'uf' => 'required |max:2',
+                'email' => 'email:rfc,dns'
+            ],
+            [
+                'email.email' => 'O email informado não é válido.',
+                'required' => 'O campo :attribute é obrigatório e precisa ser preenchido.',
+                'uf.max' => 'Informe somente a sigla do estado',
+
+            ]
+
+
+        );
+
+        $fornecedores = new Fornecedor;
+        $nome = $_POST['nome'];
+        
         $fornecedor = $fornecedores->where('nome', $nome)->get();
-       
-        /* echo '<pre>';
-        print_r( $fornecedor->toArray());
-        echo '</pre>'; */
-        return view('site.consultar', ['fornecedor' => $fornecedor->toArray()]);
+        $fornecedor->all();
+
+
+
+        if (isset($fornecedor->toArray()[0]['nome']) == $_POST['nome']) {
+            return view('site.cadastrar', ['erro' => 1]);
+        } else {
+            $uf = $_POST['uf'];
+            $uf = Str::upper($uf);
+            $fornecedor = new Fornecedor;
+            $fornecedor->nome = $request->nome;
+            $fornecedor->site = $request->site;
+            $fornecedor->uf = $uf;
+            $fornecedor->email = $request->email;
+            $fornecedor->save();
+            return view('site.cadastrar', ['sucesso' => '']);
+        };
     }
 }

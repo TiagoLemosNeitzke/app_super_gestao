@@ -5,42 +5,47 @@
 
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
-            <h1>Fornecedores - Consultar</h1>
+            <h1>Fornecedores - Cadastrar</h1>
         </div>
         <div class="menu" style="padding-top:15px;">
             <ul>
-                <li><a href="#">Novo</a></li>
-                @if(isset($fornecedor[0]) && $fornecedor[0] != '')
-                <li><a href="{{route('site.consultar')}}">Voltar</a></li>
-                @else
+                <li><a href="{{route('site.cadastrar')}}">Novo</a></li> 
                 <li><a href="{{route('app.fornecedores')}}">Voltar</a></li>
-                @endif
+               
             </ul>
         </div>
 
         <div class="informacao-pagina">
-            @if(isset($fornecedor[0]) && $fornecedor[0] != '')
-                <div style="width: 30%; margin: 0 auto;"">
-                    <p>Dados do fornecedor:</p>  
-                    <input class="borda-preta" type="text" name="nome" placeholder="Nome" value="{{ isset($fornecedor[0]['nome']) ? $fornecedor[0]['nome'] : ''}}">
-                    <input class="borda-preta" type="text" name="site" placeholder="Site" value="{{isset($fornecedor[0]['site']) ? $fornecedor[0]['site'] : ''}}">
-                    <input class="borda-preta" type="text" name="uf" placeholder="UF" value="{{isset($fornecedor[0]['uf']) ? $fornecedor[0]['uf'] : ''}}">
-                    <input class="borda-preta" type="text" name="email" placeholder="E-mail" value="{{isset($fornecedor[0]['email']) ? $fornecedor[0]['email'] : ''}}">
+           
+                <div style="width: 30%; margin: 0 auto;">
+                    <p>Preencha os campos abaixo para cadastrar um novo fornecedor.</p>
+                    <form action="{{route('site.cadastrar')}}" method="post">
+                        @csrf
+                        <input class="borda-preta" type="text" name="nome" placeholder="Nome" value="{{old('nome')}}">
+                        <span class="erro_input"> {{$errors->has('nome') ? $errors->first('nome') : ''}}</span>
+                        <input class="borda-preta" type="text" name="site" placeholder="Site" value="{{old('site')}}">
+                        <span class="erro_input"> {{$errors->has('site') ? $errors->first('site') : ''}}</span>
+                        <input class="borda-preta" type="text" name="uf" placeholder="UF" value="{{old('uf')}}">
+                        <span class="erro_input"> {{$errors->has('uf') ? $errors->first('uf') : ''}}</span>
+                        <input class="borda-preta" type="text" name="email" placeholder="E-mail" value="{{old('email')}}">
+                        <span class="erro_input"> {{$errors->has('email') ? $errors->first('email') : ''}}</span>
+                        <button class="borda-preta" type="submit">Cadastrar</button>
+                       
+                    </form>
+                    <div>
+                        @isset($erro)
+                            <span style="color: red;">Fornecedor já cadastrado.</span>
+                        @endisset
+                        @isset($sucesso)
+                            <span style="color: green;"> Fornecedor cadastrado com sucesso</span>
+                            <form action="{{route('site.cadastrar')}}">
+                                <button type="submit">Atualizar cadastro</button>
+                            </form>
+                            
+                        @endisset
+                    </div>
                 </div>
                 
-            @else
-                <div style="width: 30%; margin: 0 auto;">
-                    <p>Preencha um ou mais campos abaixo para realizar a pesquisa.</p>
-                    <form action="{{route('site.consultar')}}" method="post">
-                        @csrf
-                        <input class="borda-preta" type="text" name="nome" placeholder="Nome">
-                        <input class="borda-preta" type="text" name="site" placeholder="Site">
-                        <input class="borda-preta" type="text" name="uf" placeholder="UF">
-                        <input class="borda-preta" type="text" name="email" placeholder="E-mail">
-                        <button class="borda-preta" type="submit">Pesquisar</button>
-                    </form>
-                </div>
-            @endif
         </div>
     </div>
 

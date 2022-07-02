@@ -9,7 +9,7 @@
         </div>
         <div class="menu" style="padding-top:15px;">
             <ul>
-                <li><a href="#">Novo</a></li>
+                <li><a href="{{route('site.cadastrar')}}">Novo</a></li>
                 @if(isset($fornecedor[0]) && $fornecedor[0] != '')
                 <li><a href="{{route('site.consultar')}}">Voltar</a></li>
                 @else
