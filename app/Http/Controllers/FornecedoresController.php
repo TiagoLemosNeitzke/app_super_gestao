@@ -57,7 +57,7 @@ class FornecedoresController extends Controller
             ->orWhere('email', $email)
             ->get();
 
-        return view('site.consultar', ['fornecedor' => $fornecedores->toArray()]);
+        return view('site.consultar', ['fornecedores' => $fornecedores]);
     }
 
     public function cadastrarIndex()
@@ -89,8 +89,6 @@ class FornecedoresController extends Controller
         
         $fornecedor = $fornecedores->where('nome', $nome)->get();
         $fornecedor->all();
-
-
 
         if (isset($fornecedor->toArray()[0]['nome']) == $_POST['nome']) {
             return view('site.cadastrar', ['erro' => 1]);
