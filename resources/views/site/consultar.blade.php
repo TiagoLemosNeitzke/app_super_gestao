@@ -45,7 +45,7 @@
                                     <td>{{$fornecedor->uf}}</td>
                                     <td>{{$fornecedor->email}}</td>
                                     <td><button><a class="link" href="{{route('site.atualizar',['id' => $fornecedor->id] )}}">Atualizar</a></button></td>
-                                    <td><button><a class="link" href="">Excluir</a></button></td>
+                                    <td><button><a class="link" href="{{route('site.excluir', ['id' => $fornecedor->id])}}">Excluir</a></button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

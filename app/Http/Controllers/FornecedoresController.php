@@ -130,4 +130,11 @@ class FornecedoresController extends Controller
         $fornecedor->save();
         return redirect()->route('app.fornecedores', ['sucesso' => 1]);
     }
+
+    public function excluir($id) {
+        $fornecedor = Fornecedor::find($id);
+        //dd($fornecedor);
+        $fornecedor->delete();
+        return redirect()->route('app.fornecedores');
+    }
 }

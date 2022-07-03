@@ -55,6 +55,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/cadastrar/{erro?}', [\App\Http\Controllers\FornecedoresController::class, 'cadastrarIndex'])->name('site.cadastrar');
         Route::post('/cadastrar/{erro?}', [\App\Http\Controllers\FornecedoresController::class, 'cadastrar'])->name('site.cadastrar');
 
+        Route::get('/excluir/{id?}', [App\Http\Controllers\FornecedoresController::class, 'excluir'])->name('site.excluir');
+
         Route::get('/fornecedor/{fornecedor?}', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
     
         Route::get('/produto', [\App\Http\Controllers\ProdutoController::class, 'index'])->name('app.produtos');

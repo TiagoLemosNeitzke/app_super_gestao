@@ -21,6 +21,7 @@
             @isset($_GET['sucesso'])
                 <span class="sucesso">Registro do fornecedor atualizado com sucesso no banco de dados.</span>
             @endisset
+            
         </div>
     </div>
 
