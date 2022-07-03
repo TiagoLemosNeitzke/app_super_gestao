@@ -18,11 +18,15 @@
                 <button type="submit"><a class="link" href="{{ route('site.consultar') }}">Pesquisar</a></button>
 
             </div>
-            @isset($_GET['sucesso'])
-                <span class="sucesso">Registro do fornecedor atualizado com sucesso no banco de dados.</span>
-            @endisset
-            
         </div>
+        @isset($msg)
+            @if ($msg == 1)
+                <div class="sucesso">Registro atualizado com sucesso</div>
+            @endif
+            @if ($msg == 2)
+                <div class="sucesso">Registro apagado com sucesso</div>
+            @endif
+        @endisset
     </div>
 
     @include('site.layouts._partials.rodape')

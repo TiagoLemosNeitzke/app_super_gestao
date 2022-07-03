@@ -10,9 +10,10 @@ use Illuminate\Support\Str;
 
 class FornecedoresController extends Controller
 {
-    public function fornecedores()
+    public function fornecedores($msg)
     {
-        return view('site.fornecedores');
+        //dd($msg);
+        return view('site.fornecedores', ['msg' => $msg]);
     }
 
     public function index()
@@ -128,13 +129,15 @@ class FornecedoresController extends Controller
         $fornecedor->email = $request->email;
         //dd($fornecedor);
         $fornecedor->save();
-        return redirect()->route('app.fornecedores', ['sucesso' => 1]);
+        $msg = 1;
+        return redirect()->route('app.fornecedores', ['msg' => $msg]);
     }
 
     public function excluir($id) {
         $fornecedor = Fornecedor::find($id);
         //dd($fornecedor);
-        $fornecedor->delete();
-        return redirect()->route('app.fornecedores');
+        //$fornecedor->delete();
+        $msg = 2;
+        return redirect()->route('app.fornecedores', ['msg' => $msg]);
     }
 }
