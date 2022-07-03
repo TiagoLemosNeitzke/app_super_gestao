@@ -86,7 +86,7 @@ class FornecedoresController extends Controller
 
         $fornecedores = new Fornecedor;
         $nome = $_POST['nome'];
-        
+
         $fornecedor = $fornecedores->where('nome', $nome)->get();
         $fornecedor->all();
 
@@ -103,5 +103,31 @@ class FornecedoresController extends Controller
             $fornecedor->save();
             return view('site.cadastrar', ['sucesso' => '']);
         };
+    }
+
+    public function atualizarIndex()
+    {
+        $id = $_GET;
+       
+        $fornecedor = Fornecedor::find($id);
+       // dd($fornecedor[0]);
+        return view('site.atualizar', ['fornecedor' => $fornecedor]);
+    }
+
+    public function atualizar(Request $request)
+    {
+        $id = $request->id;
+        //dd($request->id);
+        $uf = $_POST['uf'];
+        $uf = Str::upper($uf);
+        $fornecedor = Fornecedor::find($id);
+        //dd($fornecedor->nome);
+        $fornecedor->nome = $request->nome;
+        $fornecedor->site = $request->site;
+        $fornecedor->uf = $uf;
+        $fornecedor->email = $request->email;
+        //dd($fornecedor);
+        $fornecedor->save();
+        return redirect()->route('app.fornecedores');
     }
 }

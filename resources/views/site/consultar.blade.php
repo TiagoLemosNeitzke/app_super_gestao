@@ -20,12 +20,13 @@
 
         <div class="informacao-pagina">
             @if(isset($fornecedores[0]) && $fornecedores[0] != '')
-                <div style="width: 50%; margin: 0 auto;"">
+                <div style="width: 90%; margin: 0 auto;">
                     <p>Dados do fornecedor:</p> 
                    
-                        <table style="border:1px solid; width: 100%;">
+                        <table style="border:1px solid; width: 100%; marigin: 0 auto;">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nome</th>
                                     <th>Site</th>
                                     <th>UF</th>
@@ -38,21 +39,18 @@
                             <tbody>
                                 @foreach ($fornecedores as $fornecedor)
                                 <tr>
+                                    <td>{{$fornecedor->id}}</td>
                                     <td>{{$fornecedor->nome}}</td>
                                     <td>{{$fornecedor->site}}</td>
                                     <td>{{$fornecedor->uf}}</td>
                                     <td>{{$fornecedor->email}}</td>
-                                    <td><button>Atualizar</button></td>
-                                    <td><button>Excluir</button></td>
+                                    <td><button><a class="link" href="{{route('site.atualizar',['id' => $fornecedor->id] )}}">Atualizar</a></button></td>
+                                    <td><button><a class="link" href="">Excluir</a></button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                      
-                    {{-- <input class="borda-preta" type="text" name="nome" placeholder="Nome" value="{{ isset($fornecedor[0]['nome']) ? $fornecedor[0]['nome'] : ''}}">
-                    <input class="borda-preta" type="text" name="site" placeholder="Site" value="{{isset($fornecedor[0]['site']) ? $fornecedor[0]['site'] : ''}}">
-                    <input class="borda-preta" type="text" name="uf" placeholder="UF" value="{{isset($fornecedor[0]['uf']) ? $fornecedor[0]['uf'] : ''}}">
-                    <input class="borda-preta" type="text" name="email" placeholder="E-mail" value="{{isset($fornecedor[0]['email']) ? $fornecedor[0]['email'] : ''}}"> --}}
                 </div>
                 
             @else

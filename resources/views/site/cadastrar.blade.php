@@ -37,11 +37,7 @@
                             <span style="color: red;">Fornecedor já cadastrado.</span>
                         @endisset
                         @isset($sucesso)
-                            <span style="color: green;"> Fornecedor cadastrado com sucesso</span>
-                            <form action="{{route('site.cadastrar')}}">
-                                <button type="submit">Atualizar cadastro</button>
-                            </form>
-                            
+                            <span style="color: green;"> Fornecedor cadastrado com sucesso</span>                            
                         @endisset
                     </div>
                 </div>
