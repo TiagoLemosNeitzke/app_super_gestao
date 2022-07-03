@@ -33,9 +33,6 @@
                             <button class="borda-preta" type="submit">Atualizar</button>
                         </form>
                     @endif
-                    @isset($sucesso)
-                    <span style="color: green;">Registro atualizado com sucesso.</span>
-                    @endisset
                 </div>
             
         </div>

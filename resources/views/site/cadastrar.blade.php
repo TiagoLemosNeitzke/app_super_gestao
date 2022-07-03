@@ -34,10 +34,10 @@
                     </form>
                     <div>
                         @isset($erro)
-                            <span style="color: red;">Fornecedor já cadastrado.</span>
+                            <span class="erro">Fornecedor já cadastrado.</span>
                         @endisset
                         @isset($sucesso)
-                            <span style="color: green;"> Fornecedor cadastrado com sucesso</span>                            
+                            <span class="sucesso"> Fornecedor cadastrado com sucesso</span>                            
                         @endisset
                     </div>
                 </div>

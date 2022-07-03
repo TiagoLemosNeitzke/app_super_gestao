@@ -188,12 +188,16 @@ button:hover {
     margin: 0px 15px 0px 15px;
 }
 
-.erro_input {
+.erro {
     width: fit-content;
     font-size: 14px;
     letter-spacing: 1px;
     padding: 5px;
     color: red;
+}
+
+.sucesso{
+    color: green
 }
 
 .link{

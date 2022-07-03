@@ -128,6 +128,6 @@ class FornecedoresController extends Controller
         $fornecedor->email = $request->email;
         //dd($fornecedor);
         $fornecedor->save();
-        return redirect()->route('app.fornecedores');
+        return redirect()->route('app.fornecedores', ['sucesso' => 1]);
     }
 }

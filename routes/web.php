@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/sair', [\App\Http\Controllers\LoginController::class, 'sair'])->name('app.sair');
 
-        Route::get('/fornecedores', [\App\Http\Controllers\FornecedoresController::class, 'fornecedores'])->name('app.fornecedores');
+        Route::get('/fornecedores/{sucesso?}', [\App\Http\Controllers\FornecedoresController::class, 'fornecedores'])->name('app.fornecedores');
 
         Route::get('/consultar', [\App\Http\Controllers\FornecedoresController::class, 'consultarIndex'])->name('site.consultar');
         Route::post('/consultar', [\App\Http\Controllers\FornecedoresController::class, 'consultar'])->name('site.consultar');

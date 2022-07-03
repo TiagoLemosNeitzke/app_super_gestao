@@ -7,17 +7,20 @@
         <div class="titulo-pagina">
             <h1>Fornecedores</h1>
         </div>
-       
+
         <div class="informacao-pagina">
+
             <p>Cadastre novos fornecedores ou pesquise por fornecedores cadastrados.</p>
             <div style="width: 30%; margin: 0 auto;">
-                
-                <button type="submit"><a class="link" href="{{route('site.cadastrar')}}">Cadastrar</a></button>
-            
-                <button type="submit"><a class="link" href="{{route('site.consultar')}}">Pesquisar</a></button>    
-                
+
+                <button type="submit"><a class="link" href="{{ route('site.cadastrar') }}">Cadastrar</a></button>
+
+                <button type="submit"><a class="link" href="{{ route('site.consultar') }}">Pesquisar</a></button>
+
             </div>
-            
+            @isset($_GET['sucesso'])
+                <span class="sucesso">Registro do fornecedor atualizado com sucesso no banco de dados.</span>
+            @endisset
         </div>
     </div>
 
