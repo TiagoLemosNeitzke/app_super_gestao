@@ -12,7 +12,7 @@ class FornecedoresController extends Controller
 {
     public function fornecedores($msg)
     {
-        //dd($msg);
+        
         return view('site.fornecedores', ['msg' => $msg]);
     }
 
@@ -111,23 +111,19 @@ class FornecedoresController extends Controller
         $id = $_GET;
        
         $fornecedor = Fornecedor::find($id);
-       // dd($fornecedor[0]);
         return view('site.atualizar', ['fornecedor' => $fornecedor]);
     }
 
     public function atualizar(Request $request)
     {
         $id = $request->id;
-        //dd($request->id);
         $uf = $_POST['uf'];
         $uf = Str::upper($uf);
         $fornecedor = Fornecedor::find($id);
-        //dd($fornecedor->nome);
         $fornecedor->nome = $request->nome;
         $fornecedor->site = $request->site;
         $fornecedor->uf = $uf;
         $fornecedor->email = $request->email;
-        //dd($fornecedor);
         $fornecedor->save();
         $msg = 1;
         return redirect()->route('app.fornecedores', ['msg' => $msg]);
@@ -135,8 +131,7 @@ class FornecedoresController extends Controller
 
     public function excluir($id) {
         $fornecedor = Fornecedor::find($id);
-        //dd($fornecedor);
-        //$fornecedor->delete();
+        $fornecedor->delete();
         $msg = 2;
         return redirect()->route('app.fornecedores', ['msg' => $msg]);
     }
