@@ -1,6 +1,6 @@
 # App Super Gestão
 
-> Este projeto é um app para gestão de empresa, foi criado apenas para fins de estudos.
+> Este projeto é um app para gestão de empresa, foi criado apenas para fins de estudos, algumas funcionalidades podem não terem sido implementadas.
 ### Sobre o projeto
 Este projeto foi criado para fins acadêmicos, portanto não deve ser utilizado de fato para uso prático. No projeto você vai encontar muitos comentários que uso para tirar eventuais dúvidas que possam vir a ocorrer no futuro.
 <br>
