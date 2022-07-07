@@ -10,9 +10,10 @@ use Illuminate\Support\Str;
 
 class FornecedoresController extends Controller
 {
-    public function fornecedores($msg)
+    public function fornecedores(Request $request)
     {
         
+        $msg = $request->msg;
         return view('site.fornecedores', ['msg' => $msg]);
     }
 
@@ -43,7 +44,7 @@ class FornecedoresController extends Controller
         return view('site.consultar');
     }
 
-    public function consultar()
+    public function consultar(Request $request)
     {
 
         $fornecedores = new Fornecedor;
@@ -56,9 +57,9 @@ class FornecedoresController extends Controller
             ->orWhere('site', $site)
             ->orWhere('uf', $uf)
             ->orWhere('email', $email)
-            ->get();
+            ->simplePaginate(2);
 
-        return view('site.consultar', ['fornecedores' => $fornecedores]);
+        return view('site.consultar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
     public function cadastrarIndex()

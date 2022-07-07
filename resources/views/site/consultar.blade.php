@@ -50,7 +50,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                     
+                        {{$fornecedores->appends($request['uf'])->links()}}
                 </div>
                 
             @else
