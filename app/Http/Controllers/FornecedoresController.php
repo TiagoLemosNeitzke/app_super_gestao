@@ -132,7 +132,8 @@ class FornecedoresController extends Controller
 
     public function excluir($id) {
         $fornecedor = Fornecedor::find($id);
-        $fornecedor->delete();
+        $fornecedor->delete(); // estou usando softDelete, então os registros não será eliminado da tabela. Apenas será preenchido a coluna deleted_at
+        //$fornecedor->forceDelete(); // Usar esta linha de código caso queira que o registro seja de fato eleiminado da tabela.
         $msg = 2;
         return redirect()->route('app.fornecedores', ['msg' => $msg]);
     }
