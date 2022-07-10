@@ -9,7 +9,7 @@
         </div>
         <div class="menu" style="padding-top:15px;">
             <ul>
-                <li><a href="">Novo</a></li>
+                <li><a href="{{route('produto.create')}}">Novo</a></li>
                 @if(isset($produtos[0]) && $produtos[0] != '')
                     <li><a href="">Voltar</a></li>
                 @else
