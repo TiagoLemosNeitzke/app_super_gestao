@@ -15,7 +15,7 @@
         </div>
 
         <div class="informacao-pagina">
-            {{$produtos}}
+            
             @if(isset($produtos[0]) && $produtos[0] != '')
                 <div style="width: 90%; margin: 0 auto;">
                     <p>Dados dos produtos:</p>
@@ -40,26 +40,13 @@
                                 <td>{{$produto->peso}}</td>
                                 <td>{{$produto->unidade_id}}</td>
                                 <td><button><a class="link" href="{{route('produto.show', ['produto' => $produto->id])}}">Visualizar</a></button></td>
-                                <td><button><a class="link" href="">Atualizar</a></button></td>
+                                <td><button><a class="link" href="{{route('produto.edit', ['produto' => $produto->id])}}">Atualizar</a></button></td>
                                 <td><button><a class="link" href="">Excluir</a></button></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                         {{$produtos->appends($request)->links()}}
-                </div>
-
-            @else
-                <div style="width: 30%; margin: 0 auto;">
-                    <p>Preencha um ou mais campos abaixo para realizar a pesquisa.</p>
-                    <form action="" method="post">
-                        @csrf
-                        <input class="borda-preta" type="text" name="nome" placeholder="Nome">
-                        <input class="borda-preta" type="text" name="descricao" placeholder="Descrição">
-                        <input class="borda-preta" type="text" name="peso" placeholder="Peso">
-                        <input class="borda-preta" type="text" name="unidade_id" placeholder="Unidade ID">
-                        <button class="borda-preta" type="submit">Pesquisar</button>
-                    </form>
                 </div>
             @endif
         </div>
