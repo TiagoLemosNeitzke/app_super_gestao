@@ -59,7 +59,8 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/fornecedor/{fornecedor?}', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
     
-        Route::get('/produto', [\App\Http\Controllers\ProdutoController::class, 'index'])->name('app.produtos');
+        Route::resource('/produto', \App\Http\Controllers\ProdutoController::class);
+        
     });
 
     // redirecionameto de rotas com redirect().
