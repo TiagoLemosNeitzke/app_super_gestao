@@ -56,7 +56,7 @@ class ProdutoController extends Controller
             ]
         );
         Produto::create($request->all());
-        return redirect()->route('app.produto.index');
+        return redirect()->route('produto.index');
     }
 
     /**
@@ -80,6 +80,7 @@ class ProdutoController extends Controller
     {
         $unidades = Unidade::all();
         return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        //return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**
@@ -91,6 +92,23 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $request->validate(
+            [
+                'nome' => 'required|max:50|min:3',
+                'descricao' => 'required|max:200|min:3',
+                'peso' => 'required|integer',
+                'unidade_id' => 'required|exists:unidades,id'
+            ],
+
+            [
+                'required' => 'O campo :attribute é obrigatório e precisa ser preenchido.',
+                'nome.max' => 'O campo nome ultrapassou o limite máximo 50 caracteres',
+                'descricao.max' => 'O campo descrição ultrapassou o limite máximo 200 caracteres',
+                'min' => 'O campo:attribute precisa ter no mínimo 3 caracteres',
+                'interger' => 'O campo peso dever ser um número inteiro',
+                'exists' => 'Unidade não encontrada'
+            ]
+        );
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
