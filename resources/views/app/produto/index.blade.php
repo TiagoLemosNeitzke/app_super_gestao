@@ -10,11 +10,7 @@
         <div class="menu" style="padding-top:15px;">
             <ul>
                 <li><a href="{{route('produto.create')}}">Novo</a></li>
-                @if(isset($produtos[0]) && $produtos[0] != '')
-                    <li><a href="">Voltar</a></li>
-                @else
-                    <li><a href="">Voltar</a></li>
-                @endif
+                
             </ul>
         </div>
 
@@ -22,7 +18,7 @@
             {{$produtos}}
             @if(isset($produtos[0]) && $produtos[0] != '')
                 <div style="width: 90%; margin: 0 auto;">
-                    <p>Dados do fornecedor:</p>
+                    <p>Dados dos produtos:</p>
 
                     <table style="border:1px solid; width: 100%; marigin: 0 auto;">
                         <thead>
@@ -39,18 +35,18 @@
                         <tbody>
                         @foreach ($produtos as $produto)
                             <tr>
-{{--                                <td>{{$produto->id}}</td>--}}
                                 <td>{{$produto->nome}}</td>
                                 <td>{{$produto->descricao}}</td>
                                 <td>{{$produto->peso}}</td>
                                 <td>{{$produto->unidade_id}}</td>
+                                <td><button><a class="link" href="{{route('produto.show', ['produto' => $produto->id])}}">Visualizar</a></button></td>
                                 <td><button><a class="link" href="">Atualizar</a></button></td>
                                 <td><button><a class="link" href="">Excluir</a></button></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                   {{--  {{$produtos->appends($request['nome'])->links()}} --}}
+                        {{$produtos->appends($request)->links()}}
                 </div>
 
             @else

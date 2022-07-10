@@ -15,7 +15,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::paginate(10);
+        $produtos = Produto::simplePaginate(2);
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
@@ -56,7 +56,7 @@ class ProdutoController extends Controller
             ]
         );
         Produto::create($request->all());
-        return redirect()->route('produto.index');
+        return redirect()->route('app.produto.index');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        return view('app.produto.show', ['produto' => $produto]);
     }
 
     /**
