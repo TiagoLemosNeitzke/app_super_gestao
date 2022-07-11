@@ -1,6 +1,8 @@
 <?php
 
 //use \Http\Middleware\LogAcessoMiddleware; tenho que descomentar aqui se quiser usar o middleware por aqui, está implementado em Kernel.php
+
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +62,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/fornecedor/{fornecedor?}', [App\Http\Controllers\FornecedoresController::class, 'index'])->name('app.fornecedor');
     
         Route::resource('/produto', \App\Http\Controllers\ProdutoController::class);
+
+        Route::resource('/produto-detalhe', App\Http\Controllers\ProdutoDetalheController::class);
         
     });
 
