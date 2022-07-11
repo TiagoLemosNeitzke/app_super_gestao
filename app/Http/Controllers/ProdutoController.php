@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
-use Illuminate\Http\Request;
 use App\Models\Unidade;
+use App\Models\ProdutoDetalhe;
+use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
@@ -15,7 +16,27 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::simplePaginate(2);
+        $produtos = Produto::simplePaginate(4);
+        /* foreach($produtos as $key => $produto) 
+        {
+            //print_r($produto->getAttributes());
+            //echo '<br><br>';
+            $produto_detalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first();
+            if(isset($produto_detalhe))
+            {
+                //print_r($produto_detalhe->getAttributes());
+                $produtos[$key]['comprimento'] = $produto_detalhe->comprimento;
+                $produtos[$key]['altura'] = $produto_detalhe->altura;
+                $produtos[$key]['largura'] = $produto_detalhe->largura;
+            }
+
+            PARA USAR O MÉTODO ACIMA PRECISO ADICIONAR NA VIEW INDEX DE PRODUTO O CÓDIGO ABAIXO
+
+            <td>{{$produto->comprimento ?? ''}}</td>
+            <td>{{$produto->altura ?? ''}}</td>
+            <td>{{$produto->largura ?? ''}}</td>Ii
+        } */
+
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
