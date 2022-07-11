@@ -1,5 +1,5 @@
 @if (isset($produto_detalhe->id))
-    <p>Faça a edição do produto nos campos abaixo.</p>
+    <p>Faça a edição dos detalhes do produto nos campos abaixo.</p>
 @else
     <p>Preencha os campos abaixo para cadastrar os detalhes do produto.</p>
 @endif
@@ -12,19 +12,24 @@
         <form action="{{ route('produto-detalhe.store') }}" method="post">
             @csrf
 @endif
+<label for="produto_id">ID do produto:</label>
 <input class="borda-preta" type="text" name="produto_id" placeholder="Id do produto" value="{{ $produto_detalhe->produto_id ?? old('produto_id') }}">
 <span class="erro"> {{ $errors->has('produto_id') ? $errors->first('produto_id') : '' }}</span>
 
+<label for="comprimento">Comprimento:</label>
 <input class="borda-preta" type="text" name="comprimento" placeholder="Comprimento"
     value="{{ $produto_detalhe->comprimento ?? old('comprimento') }}">
 <span class="erro"> {{ $errors->has('comprimento') ? $errors->first('comprimento') : '' }}</span>
 
+<label for="largura">Largura:</label>
 <input class="borda-preta" type="text" name="largura" placeholder="Largura" value="{{ $produto_detalhe->largura ?? old('largura') }}">
 <span class="erro"> {{ $errors->has('largura') ? $errors->first('largura') : '' }}</span>
 
+<label for="altura">Altura:</label>
 <input class="borda-preta" type="text" name="altura" placeholder="Altura" value="{{ $produto_detalhe->altura ?? old('altura') }}">
 <span class="erro"> {{ $errors->has('altura') ? $errors->first('altura') : '' }}</span>
 
+<label for="unidade_id">ID da unidade:</label>
 <select name="unidade_id">
     <option value="">Selecione a unidade da empresa</option>
     @foreach ($unidades as $unidade)

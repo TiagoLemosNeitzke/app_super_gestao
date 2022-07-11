@@ -205,3 +205,10 @@ button:hover {
     color: white;
     margin-top: 5px;
 }
+
+label{
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+    font-weight: bold;
+}

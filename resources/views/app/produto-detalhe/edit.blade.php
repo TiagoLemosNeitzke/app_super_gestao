@@ -9,21 +9,25 @@
         </div>
         <div class="menu" style="padding-top:15px;">
             <ul>
-                <li><a href="{{route('produto-detalhe.create')}}">Novo</a></li> 
+                <li><a href="{{ route('produto-detalhe.create') }}">Novo</a></li>
                 <li><a href="">Voltar</a></li>
-               
+
             </ul>
         </div>
 
         <div class="informacao-pagina">
-           
-                <div style="width: 30%; margin: 0 auto;">
-                    
-                    @component('app.produto-detalhe._components.form_create_edit', ['produto_detalhe' => $produto_detalhe, 'unidades' => $unidades])
-                        
-                    @endcomponent
+
+            <div style="width: 30%; margin: 0 auto;">
+                <div style="text-align: left;">
+                    <h4>Produto</h4>
+                    <div><b>Nome:</b> {{$produto_detalhe->produto->nome}}</div>
+                    <div><b>Descrição:</b> {{$produto_detalhe->produto->descricao}}</div>
                 </div>
-                
+
+                @component('app.produto-detalhe._components.form_create_edit', ['produto_detalhe' => $produto_detalhe, 'unidades' => $unidades])
+                @endcomponent
+            </div>
+
         </div>
     </div>
 
