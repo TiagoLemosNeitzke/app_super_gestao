@@ -57,7 +57,7 @@ class FornecedoresController extends Controller
             ->orWhere('site', $site)
             ->orWhere('uf', $uf)
             ->orWhere('email', $email)
-            ->simplePaginate(6);
+            ->simplePaginate(2);
 
         return view('site.consultar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }

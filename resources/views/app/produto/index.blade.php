@@ -27,7 +27,7 @@
                             <th>Descrição</th>
                             <th>Peso</th>
                             <th>Unidade ID</th>
-                            <th>Fornecedor</th>
+                            <th>Fornecedor ID</th>
                             <th>Comprimento</th>
                             <th>Altura</th>
                             <th>Largura</th>

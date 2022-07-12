@@ -15,7 +15,10 @@ class Fornecedor extends Model
 
         protected $fillable = ['nome', 'site', 'uf', 'email']; // PRECISO DESTE ATRIBUTO PARA USAR O MÉTODO ESTÁTICO CREATE NO TINKER | sintaxe no terminal \App\Models\Fornecedor::create(['nome'=>'Fornecedor2','site'=>'fornecedor2.com.br','uf'=>'MS','email'=>'fornecedor2@teste.com.br']); | PARA ATUALIZAR USAR O MÉTODO fill([passar a coluna e o novo valor por array associativo, como fiz no create]) depois usar o método save() para persistir no banco os dados
 
-
+        protected function produtos()
+        {
+                return $this->hasMany('App\Models\Produto', 'fornecedor_id', 'id'); // TEMMUITO(MODEL DE VOU USAR A CHAVE, NOME DA COLUNA, REFERENCIA NA TABELA DE ORIGEM DA FOREIGNKEY)
+        }
 }
 
 
