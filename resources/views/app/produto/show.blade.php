@@ -39,6 +39,18 @@
                         <td>Unidade</td>
                         <td>{{$produto->unidade_id}}</td>
                     </tr>
+                    <tr>
+                        <td>Comprimento</td>
+                        <td>{{$produto->produtoDetalhe->comprimento}}</td>
+                    </tr>
+                    <tr>
+                        <td>Largura</td>
+                        <td>{{$produto->produtoDetalhe->largura}}</td>
+                    </tr>
+                    <tr>
+                        <td>Altura</td>
+                        <td>{{$produto->produtoDetalhe->altura}}</td>
+                    </tr>
                    </table>
                    
                     
