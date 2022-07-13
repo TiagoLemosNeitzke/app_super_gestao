@@ -39,8 +39,6 @@ use Illuminate\Support\Facades\Route;
 
     //PARA PASSAR PARÂMETROS VIA MIDDLEWARE, BASTA SEPARAR ELES POR ','
     Route::prefix('/app')->middleware('autenticacao:padrao, visitante')->group(function(){
-        
-        Route::get('/cliente', [\App\Http\Controllers\ClienteController::class, 'index'])->name('app.clientes');
 
         Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('app.home');
 
@@ -64,6 +62,12 @@ use Illuminate\Support\Facades\Route;
         Route::resource('/produto', \App\Http\Controllers\ProdutoController::class);
 
         Route::resource('/produto-detalhe', App\Http\Controllers\ProdutoDetalheController::class);
+
+        Route::resource('cliente', App\Http\Controllers\ClienteController::class);
+
+        Route::resource('pedido', App\Http\Controllers\PedidoController::class);
+
+        Route::resource('pedido-produto', App\Http\Controllers\PedidoProdutoController::class);
         
     });
 
