@@ -22,7 +22,7 @@
            
                 <div style="width: 30%; margin: 0 auto;">
                     
-                    @component('app.produto._components.form_create_edit', ['unidades' => $unidades])
+                    @component('app.produto._components.form_create_edit', ['unidades' => $unidades, 'fornecedores' => $fornecedores])
                         
                     @endcomponent
                    

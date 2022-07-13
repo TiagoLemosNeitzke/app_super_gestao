@@ -44,9 +44,9 @@
                                 <td>{{$produto->peso}}</td>
                                 <td>{{$produto->unidade_id}}</td>
                                 <td>{{$produto->fornecedor->nome}}</td>
-                                <td>{{$produto->produtoDetalhe->comprimento ?? ''}}</td>
-                                <td>{{$produto->produtoDetalhe->altura ?? ''}}</td>
-                                <td>{{$produto->produtoDetalhe->largura ?? ''}}</td>
+                                <td>{{$produto->comprimento ?? ''}}</td>
+                                <td>{{$produto->altura ?? ''}}</td>
+                                <td>{{$produto->largura ?? ''}}</td>
                                 <td><button><a class="link" href="{{route('produto.show', ['produto' => $produto->id])}}">Visualizar</a></button></td>
                                 <td><button><a class="link" href="{{route('produto.edit', ['produto' => $produto->id])}}">Atualizar</a></button></td>
                                 <td>

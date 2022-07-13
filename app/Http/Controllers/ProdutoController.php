@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Models\Unidade;
 use App\Models\ProdutoDetalhe;
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -47,8 +48,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $fornecedores = fornecedor::all();
         $unidades = Unidade::all();
-        return view('app.produto.create', ['unidades' => $unidades]);
+        $produto_detalhe = ProdutoDetalhe::all();
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores, 'produto_detalhe' => $produto_detalhe]);
     }
 
     /**
@@ -64,7 +67,11 @@ class ProdutoController extends Controller
                 'nome' => 'required|max:50|min:3',
                 'descricao' => 'required|max:200|min:3',
                 'peso' => 'required|integer',
-                'unidade_id' => 'required|exists:unidades,id'
+                'unidade_id' => 'required|exists:unidades,id',
+                'fornecedor_id' => 'required',
+                'comprimento' => 'required|integer',
+                'largura' => 'required|integer',
+                'altura' => 'required|integer'
             ],
 
             [
@@ -72,7 +79,7 @@ class ProdutoController extends Controller
                 'nome.max' => 'O campo nome ultrapassou o limite máximo 50 caracteres',
                 'descricao.max' => 'O campo descrição ultrapassou o limite máximo 200 caracteres',
                 'min' => 'O campo:attribute precisa ter no mínimo 3 caracteres',
-                'interger' => 'O campo peso dever ser um número inteiro',
+                'integer' => 'O campo :attribute dever ser um número inteiro',
                 'exists' => 'Unidade não encontrada'
             ]
         );
@@ -99,8 +106,9 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
+        $fornecedores = fornecedor::all();
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
         //return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
@@ -118,7 +126,11 @@ class ProdutoController extends Controller
                 'nome' => 'required|max:50|min:3',
                 'descricao' => 'required|max:200|min:3',
                 'peso' => 'required|integer',
-                'unidade_id' => 'required|exists:unidades,id'
+                'unidade_id' => 'required|exists:unidades,id',
+                'fornecedor_id' => 'required',
+                'comprimento' => 'required|integer',
+                'largura' => 'required|integer',
+                'altura' => 'required|integer'
             ],
 
             [
@@ -126,7 +138,7 @@ class ProdutoController extends Controller
                 'nome.max' => 'O campo nome ultrapassou o limite máximo 50 caracteres',
                 'descricao.max' => 'O campo descrição ultrapassou o limite máximo 200 caracteres',
                 'min' => 'O campo:attribute precisa ter no mínimo 3 caracteres',
-                'interger' => 'O campo peso dever ser um número inteiro',
+                'integer' => 'O campo:attribute dever ser um número inteiro',
                 'exists' => 'Unidade não encontrada'
             ]
         );
