@@ -9,4 +9,5 @@ class PedidoProduto extends Model
 {
     use HasFactory;
     protected $table = 'pedidos_produtos'; /* USAR ESTE MÉTODO PARA AJUSTAR O NOME DA TABELA, DEVIDO O ELOQUENT USAR OUTRO PADRÃO PARA O NOME DA TABELA */
+    protected $fillable = ['pedido_id', 'produto_id'];
 }
