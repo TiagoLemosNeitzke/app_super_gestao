@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
@@ -11,9 +12,10 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('site.clientes');
+        $clientes = Cliente::simplePaginate(5);
+        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
     }
 
     /**
@@ -23,7 +25,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.cliente.create');
     }
 
     /**
@@ -34,7 +36,20 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nome' => 'required|min:3|max:200'
+            ],
+            [
+                'required' => 'O campo nome é obrigatório',
+                'min' => 'O campo nome não pode conter menos de 3 caracteres',
+                'max' => 'O campo nome não pode conter mais de 200 caracteres'
+            ]
+        );
+        $cliente = new Cliente;
+        $cliente->nome = $request->get('nome');
+        $cliente->save();
+        return redirect()->route('cliente.index');
     }
 
     /**
@@ -45,7 +60,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('app.cliente.show', ['cliente' => $cliente]);
     }
 
     /**
@@ -54,9 +70,10 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cliente $cliente)
     {
-        //
+        
+        return view('app.cliente.edit', ['cliente' => $cliente]);
     }
 
     /**
@@ -66,9 +83,20 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cliente $cliente)
     {
-        //
+        $request->validate(
+            [
+                'nome' => 'required|min:3|max:200'
+            ],
+            [
+                'required' => 'O campo nome é obrigatório',
+                'min' => 'O campo nome não pode conter menos de 3 caracteres',
+                'max' => 'O campo nome não pode conter mais de 200 caracteres'
+            ]
+        );
+        $cliente->update($request->all());
+        return redirect()->route('cliente.index');
     }
 
     /**
@@ -77,8 +105,9 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('cliente.index');
     }
 }
