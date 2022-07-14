@@ -5,7 +5,7 @@
 
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
-            <h1>Cliente - Visualizar</h1>
+            <h1>Clientes - Visualizar</h1>
         </div>
         <div class="menu" style="padding-top:15px;">
             <ul>

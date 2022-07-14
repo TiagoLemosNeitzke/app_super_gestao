@@ -138,7 +138,7 @@ class ProdutoController extends Controller
                 'nome.max' => 'O campo nome ultrapassou o limite máximo 50 caracteres',
                 'descricao.max' => 'O campo descrição ultrapassou o limite máximo 200 caracteres',
                 'min' => 'O campo:attribute precisa ter no mínimo 3 caracteres',
-                'integer' => 'O campo:attribute dever ser um número inteiro',
+                'integer' => 'O campo :attribute dever ser um número inteiro',
                 'exists' => 'Unidade não encontrada'
             ]
         );
