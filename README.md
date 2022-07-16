@@ -8,7 +8,7 @@ Criei o projeto à partir das aulas do curso Desenvolvimento Web Avançado 2022 
 <br>
 
 ## Aprendizado
-Durante o desenvolvimento deste projeto pude aprofundar meus conhecimentos no framework Laravel. Detre os conhecimentos:
+Durante o desenvolvimento deste projeto pude aprofundar meus conhecimentos no framework Laravel. Dentre os conhecimentos:
 * Tinker;
 * Eloquent ORM;
 * PHP Artisan;
