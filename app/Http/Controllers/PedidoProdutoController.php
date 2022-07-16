@@ -39,19 +39,34 @@ class PedidoProdutoController extends Controller
      */
     public function store(Request $request, Pedido $pedido)
     {
-        //dd($pedido->id);
+        //dd($request->get('quantidade'));
         $request->validate(
             [
-                'produto_id' => 'exists:produtos,id'
+                'produto_id' => 'exists:produtos,id',
+                'quantidade' => 'required'
             ],
             [
-                'exists' => 'O produto selecionado não existe'
+                'exists' => 'O produto selecionado não existe',
+                'required' => 'O campo quantidade é obrigatório'
             ]
         );
-        $pedidoProduto = new PedidoProduto();
+       /* A FORMA ABAIXO DE SALVAR OS DADOS NA TABELA FUNCIONA, ESTÁ COMENTADO PARA ESTUDAR OUTRAS FORMAS */
+        /*  $pedidoProduto = new PedidoProduto();
         $pedidoProduto->pedido_id = $pedido->id;
         $pedidoProduto->produto_id = $request->get('produto_id');
-        $pedidoProduto->save();
+        $pedidoProduto->quantidade = $request->get('quantidade');
+        $pedidoProduto->save(); */
+
+        /* ABAIXO ESTÃO DUAS FORMAS DISTINTAS DE CHAMAR O MÉTODO QUE ESTÁ IMPLEMENTADO NO MODEL PEDIDO */
+        /* $pedido->produtos; */ //quando chamamos um método em formato de atributo o retorno é o registro do relacionameto | ESSA LINHA ESTÁ AQUI SÓ PARA EXEMPLIFICAR O RETORNO
+        $pedido->produtos()->attach($request->get('produto_id'),['quantidade' => $request->get('quantidade')]); //quando chamo na forma de método o retorno é um objeto qua mapea o relacionamento
+
+        /* EU PODERIA TAMBÉM ATUALIZAR VÁRIOS CAMPOS DE UMA VEZ. ABAIXO ESTÁ COMO FICARIA A SINTAXE */
+        /* $pedido->produtos()->attach([
+            $request->get('produto_id') => ['quantidade' => $request->get('quantidade')],
+            $request->get('outra_coluna') => ['nome_coluna' => $request->get('dados')] // poderia passar quantos eu precisasse
+        ]); */
+    
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
 
