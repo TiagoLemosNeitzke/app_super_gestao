@@ -18,7 +18,7 @@
             </ul>
         </div>
 
-        <div class="informacao-pagina">
+        <div class="informacao-pagina ">
              
                 <div style="width: 30%; margin: 0 auto;">
                     <p>Use os campos abaixo para editar os dados do fornecedor.</p>

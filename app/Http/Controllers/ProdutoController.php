@@ -17,7 +17,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::simplePaginate(4);
+        $produtos = Produto::simplePaginate(2);
         /* foreach($produtos as $key => $produto) 
         {
             //print_r($produto->getAttributes());
